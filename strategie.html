@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stratégie CIUGU · Acte II · Le nom, le positionnement, les réseaux</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+ html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+ body { background: var(--secondary--color-3); }
+
+ /* ===== Scroll progress ===== */
+ .progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 90; background: transparent; pointer-events: none; }
+ .progress i { display: block; height: 100%; width: 0%; background: var(--accent--primary-1); transition: width .12s linear; }
+
+ /* ===== Top nav ===== */
+ .topnav { position: sticky; top: 0; z-index: 50; background: #251a45ee; backdrop-filter: blur(10px); border-bottom: 1px solid #ffffff1f; }
+ .topnav-inner { max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 22px; }
+ .topnav img { height: 28px; display: block; flex-shrink: 0; filter: brightness(0) invert(1); }
+ .topnav .back { font-size: 14px; font-weight: 500; color: #cfc8e6; text-decoration: none; white-space: nowrap; transition: color .3s; }
+ .topnav .back:hover { color: #ffffff; }
+ .topnav-links { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; margin-left: auto; }
+ .topnav-links::-webkit-scrollbar { display: none; }
+ .topnav-links a { font-size: 14px; font-weight: 500; color: #cfc8e6; text-decoration: none; padding: 6px 12px; border-radius: 12px; white-space: nowrap; transition: color .3s, background-color .3s; }
+ .topnav-links a:hover { color: #ffffff; background: #ffffff14; }
+ .topnav-links a b { color: var(--accent--primary-1); font-weight: 700; margin-right: 5px; }
+
+ /* ===== Shared ===== */
+ .wrap { max-width: 880px; margin: 0 auto; }
+ .wrap.wide { max-width: 1040px; }
+ .kicker { font-size: 14px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--accent--primary-1); margin-bottom: 18px; }
+ .kicker span { color: var(--neutral--500); font-weight: 500; text-transform: none; letter-spacing: 0; }
+ h2.ch-title { font-size: clamp(30px, 4.6vw, 48px); line-height: 1.1; letter-spacing: -.012em; color: var(--neutral--800); font-weight: 600; margin: 0 0 22px; text-wrap: balance; }
+ h3.sub-title { font-size: clamp(20px, 2.6vw, 25px); color: var(--neutral--800); font-weight: 600; margin: 60px 0 16px; }
+ .lead { font-size: clamp(18px, 2.2vw, 21px); line-height: 1.62; color: var(--neutral--700); margin: 0 0 16px; text-wrap: pretty; }
+ p { text-wrap: pretty; }
+ .muted { color: var(--neutral--600); font-size: 15.5px; line-height: 1.62; }
+ .fine { color: var(--neutral--500); font-size: 13px; line-height: 1.55; }
+ strong { color: var(--neutral--800); font-weight: 600; }
+ .ch { padding: clamp(84px, 11vw, 150px) 24px; }
+ .ch.tint { background: var(--secondary--color-1); }
+ .ch.paper { background: var(--neutral--100); }
+
+ /* ===== Reveal system (JS-gated) ===== */
+ @media (prefers-reduced-motion: no-preference) {
+  .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.2,.65,.25,1), transform .8s cubic-bezier(.2,.65,.25,1); transition-delay: var(--d, 0s); }
+  .js .reveal.in { opacity: 1; transform: none; }
+ }
+
+ /* ===== HERO ===== */
+ .hero { position: relative; min-height: 92dvh; display: flex; align-items: center; overflow: hidden; background: var(--neutral--800); color: var(--neutral--100); padding: 110px 24px 90px; }
+ .hero-rings { position: absolute; inset: 0; pointer-events: none; }
+ .hero-rings circle { fill: none; stroke: #9a8aff; stroke-opacity: .16; }
+ @media (prefers-reduced-motion: no-preference) {
+  .js .hero-rings circle { stroke-dasharray: 2600; stroke-dashoffset: 2600; animation: ringdraw 3.2s cubic-bezier(.3,.5,.2,1) forwards; }
+  .js .hero-rings circle:nth-child(2) { animation-delay: .5s; }
+  .js .hero-rings circle:nth-child(3) { animation-delay: 1s; }
+  @keyframes ringdraw { to { stroke-dashoffset: 0; } }
+ }
+ .hero-inner { position: relative; z-index: 2; max-width: 1040px; margin: 0 auto; width: 100%; }
+ .hero .kicker { color: var(--accent--primary-1); }
+ .hero .kicker span { color: #b4abd6; }
+ .wordmark { font-size: clamp(76px, 17vw, 218px); font-weight: 600; letter-spacing: .015em; line-height: .95; color: var(--neutral--100); margin: 10px 0 30px; display: flex; }
+ .wordmark span { display: inline-block; }
+ @media (prefers-reduced-motion: no-preference) {
+  .js .wordmark span { opacity: 0; transform: translateY(.45em); filter: blur(8px); transition: opacity .9s cubic-bezier(.2,.65,.2,1), transform .9s cubic-bezier(.2,.65,.2,1), filter .9s; transition-delay: calc(.12s + var(--i) * .1s); }
+  .js .wordmark.in span { opacity: 1; transform: none; filter: none; }
+ }
+ .hero .lead { color: #d9d3ee; max-width: 620px; }
+ .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+ .hero-chips a { display: inline-flex; align-items: baseline; gap: 8px; font-size: 15px; font-weight: 500; color: var(--neutral--100); text-decoration: none; border: 1px solid #ffffff2e; border-radius: 18px; padding: 10px 18px; transition: background-color .3s, border-color .3s, transform .3s; }
+ .hero-chips a b { font-size: 12px; font-weight: 700; color: var(--accent--primary-1); }
+ .hero-chips a:hover { background: #ffffff14; border-color: var(--accent--primary-1); transform: translateY(-2px); }
+
+ /* ===== Anatomy (letterforms) ===== */
+ .anatomy { background: var(--neutral--100); border: 1px solid var(--neutral--300); border-radius: 24px; padding: clamp(30px, 5vw, 56px) clamp(20px, 4vw, 48px); margin-top: 44px; text-align: center; box-shadow: 0 4px 12px #e5e3e066; }
+ .anatomy .word { display: flex; justify-content: center; gap: .04em; font-size: clamp(58px, 11vw, 132px); font-weight: 600; line-height: 1; color: var(--neutral--800); user-select: none; }
+ .anatomy .word span { position: relative; display: inline-block; padding: .08em .02em; transition: color .55s, transform .55s, opacity .55s; }
+ .anatomy .word span::after { content: ""; position: absolute; left: 50%; top: 50%; width: 1.18em; height: 1.18em; margin: -.59em 0 0 -.59em; border: 2.5px solid var(--accent--primary-1); border-radius: 50%; opacity: 0; transform: scale(.6); transition: opacity .55s, transform .55s cubic-bezier(.2,.65,.3,1.3); pointer-events: none; }
+ .anatomy.dim .word span { color: var(--neutral--400); }
+ .anatomy .word span.on { color: var(--neutral--800); transform: translateY(-.04em); }
+ .anatomy .word span.on.ring::after { opacity: 1; transform: scale(1); }
+ .anote { min-height: 56px; margin-top: 30px; font-size: clamp(16px, 2vw, 19px); line-height: 1.55; color: var(--neutral--700); max-width: 560px; margin-left: auto; margin-right: auto; transition: opacity .4s; }
+ .anote strong { color: var(--neutral--800); }
+ .anote.fade { opacity: 0; }
+ .adots { display: flex; justify-content: center; gap: 8px; margin-top: 22px; }
+ .adots button { width: 10px; height: 10px; border-radius: 50%; border: none; padding: 0; background: var(--neutral--400); cursor: pointer; transition: background-color .3s, transform .3s; }
+ .adots button.on { background: var(--accent--primary-1); transform: scale(1.25); }
+ .anatomy .fine { margin-top: 24px; }
+
+ /* ===== Sound cards ===== */
+ .sounds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+ .sound { background: var(--neutral--100); border: 1px solid var(--neutral--300); border-radius: 20px; padding: 26px 26px 28px; box-shadow: 0 4px 12px #e5e3e066; }
+ .sound .glyphbox { height: 74px; display: flex; align-items: center; }
+ .sound .letter { font-size: 44px; font-weight: 700; color: var(--neutral--800); line-height: 1; }
+ .sound .shape { width: 44px; height: 44px; flex-shrink: 0; position: relative; }
+ .shape.round { border-radius: 50%; background: var(--secondary--color-1); border: 2.5px solid #3b2a6e; position: relative; }
+ .shape.thin { width: 3px; height: 52px; border-radius: 2px; background: #3b2a6e; margin: 0; }
+ .shape.heavy { border-radius: 10px; background: #3b2a6e; }
+ .sound h4 { font-size: 17px; font-weight: 600; color: var(--neutral--800); margin: 14px 0 6px; }
+ .sound p { font-size: 14.5px; line-height: 1.55; color: var(--neutral--600); margin: 0; }
+
+ /* ===== Insight cards ===== */
+ .insights { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+ .insight { background: var(--neutral--100); border: 1px solid var(--neutral--300); border-radius: 20px; padding: 28px 30px; box-shadow: 0 4px 12px #e5e3e066; }
+ .insight .tag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent--primary-1); background: var(--secondary--color-1); border-radius: 14px; padding: 4px 12px; margin-bottom: 14px; }
+ .insight h4 { font-size: 19px; font-weight: 600; color: var(--neutral--800); margin: 0 0 8px; }
+ .insight p { font-size: 15px; line-height: 1.6; color: var(--neutral--700); margin: 0 0 8px; }
+ .insight p:last-child { margin-bottom: 0; }
+ .insight .fine { margin-top: 10px; }
+
+ /* ===== Dark verdict band ===== */
+ .band { background: var(--neutral--800); color: var(--neutral--100); padding: clamp(70px, 9vw, 120px) 24px; position: relative; overflow: hidden; }
+ .band::before { content: ""; position: absolute; inset: 0; background: radial-gradient(800px 500px at 85% 0%, #4a358566 0%, transparent 60%); pointer-events: none; }
+ .band .wrap { position: relative; }
+ .band .kicker { color: var(--accent--primary-1); }
+ .band .big { font-size: clamp(22px, 3.2vw, 32px); line-height: 1.42; font-weight: 500; margin: 0; }
+ .band .big em { font-style: normal; color: var(--accent--primary-1); font-weight: inherit; }
+ .band .muted { color: #b4abd6; margin-top: 18px; }
+
+ /* ===== Trajectory steps ===== */
+ .traj { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; align-items: end; margin-top: 48px; }
+ .tcard { display: flex; flex-direction: column; }
+ .tcard .box { background: var(--neutral--100); border: 1px solid var(--neutral--300); border-radius: 18px; padding: 20px 20px 22px; box-shadow: 0 4px 12px #e5e3e066; flex: 1; }
+ .tcard .no { font-size: 12.5px; font-weight: 700; letter-spacing: .12em; color: var(--accent--primary-1); }
+ .tcard h4 { font-size: 16.5px; font-weight: 600; color: var(--neutral--800); margin: 6px 0 6px; }
+ .tcard p { font-size: 13.5px; line-height: 1.5; color: var(--neutral--600); margin: 0; }
+ .tcard .ped { background: linear-gradient(180deg, var(--accent--primary-1), #c9bfff); border-radius: 0 0 12px 12px; margin: 0 14px; height: var(--h); transform-origin: top; }
+ @media (prefers-reduced-motion: no-preference) {
+  .js .traj .ped { transform: scaleY(0); transition: transform 1s cubic-bezier(.2,.65,.25,1); transition-delay: calc(.15s + var(--i) * .12s); }
+  .js .traj.in .ped { transform: scaleY(1); }
+ }
+
+ /* ===== Tagline moment ===== */
+ .tagline { background: var(--neutral--800); color: var(--neutral--100); padding: clamp(110px, 16vw, 200px) 24px; text-align: center; position: relative; overflow: hidden; }
+ .tagline::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(72vw, 760px); aspect-ratio: 1; transform: translate(-50%, -50%); border: 1px solid #9a8aff38; border-radius: 50%; pointer-events: none; }
+ .tagline::after { content: ""; position: absolute; left: 50%; top: 50%; width: min(48vw, 500px); aspect-ratio: 1; transform: translate(-50%, -50%); border: 1px solid #9a8aff24; border-radius: 50%; pointer-events: none; }
+ .tagline .kicker { color: var(--accent--primary-1); margin-bottom: 30px; }
+ .tagline .phrase { position: relative; z-index: 2; font-size: clamp(34px, 6vw, 68px); line-height: 1.16; font-weight: 600; letter-spacing: -.012em; margin: 0 auto; max-width: 900px; text-wrap: balance; }
+ .tagline .phrase .w { display: inline-block; }
+ @media (prefers-reduced-motion: no-preference) {
+  .js .tagline .w { opacity: 0; transform: translateY(.5em); filter: blur(6px); transition: opacity .85s cubic-bezier(.2,.65,.2,1), transform .85s cubic-bezier(.2,.65,.2,1), filter .85s; transition-delay: calc(var(--i) * .14s); }
+  .js .tagline.in .w { opacity: 1; transform: none; filter: blur(0); }
+ }
+ .tagline .en { position: relative; z-index: 2; font-size: 15px; font-style: italic; color: #b4abd6; margin-top: 24px; }
+ .tagline .proof { position: relative; z-index: 2; font-size: 16.5px; line-height: 1.6; color: #d9d3ee; max-width: 600px; margin: 34px auto 0; }
+
+ /* ===== Funnel ===== */
+ .funnel { display: grid; gap: 16px; margin-top: 44px; }
+ .floor { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 22px; align-items: center; }
+ .floor .viz { display: flex; justify-content: center; }
+ .floor .slab { width: var(--w); height: 84px; border-radius: 18px; background: var(--neutral--100); border: 1px solid var(--neutral--300); box-shadow: 0 4px 12px #e5e3e066; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 600; color: var(--neutral--800); font-size: clamp(15px, 1.8vw, 18px); letter-spacing: .06em; text-transform: uppercase; }
+ .floor .slab b { font-size: 12px; color: var(--accent--primary-1); letter-spacing: .14em; }
+ .floor:nth-child(1) .slab { background: var(--neutral--800); color: var(--neutral--100); border-color: var(--neutral--800); }
+ .floor:nth-child(2) .slab { background: var(--secondary--color-1); border-color: #d9ccff; }
+ @media (prefers-reduced-motion: no-preference) {
+  .js .funnel .slab { transform: scaleX(.25); opacity: 0; transition: transform .9s cubic-bezier(.2,.65,.25,1), opacity .7s; transition-delay: calc(var(--i) * .16s); }
+  .js .funnel.in .slab { transform: scaleX(1); opacity: 1; }
+ }
+ .floor .txt h4 { font-size: 18px; font-weight: 600; color: var(--neutral--800); margin: 0 0 6px; }
+ .floor .txt p { font-size: 14.5px; line-height: 1.58; color: var(--neutral--600); margin: 0; }
+ .floor .txt .fine { margin-top: 6px; }
+
+ /* ===== Pillars ===== */
+ .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
+ .pillar { background: var(--secondary--color-1); border-radius: 18px; padding: 22px 22px 24px; }
+ .pillar h4 { font-size: 16.5px; font-weight: 600; color: var(--neutral--800); margin: 10px 0 6px; }
+ .pillar p { font-size: 13.5px; line-height: 1.55; color: var(--neutral--700); margin: 0; }
+ .pillar .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent--primary-1); }
+ .pillar-note { margin-top: 16px; }
+
+ /* ===== Machine / guardrails ===== */
+ .twocol { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; margin-top: 28px; }
+ .panelcard { background: var(--neutral--100); border: 1px solid var(--neutral--300); border-radius: 20px; padding: 28px 30px; box-shadow: 0 4px 12px #e5e3e066; }
+ .panelcard h4 { font-size: 18px; font-weight: 600; color: var(--neutral--800); margin: 0 0 10px; }
+ .panelcard p { font-size: 15px; line-height: 1.6; color: var(--neutral--700); margin: 0 0 10px; }
+ .panelcard p:last-child { margin-bottom: 0; }
+ .panelcard ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+ .panelcard li { font-size: 14.5px; line-height: 1.55; color: var(--neutral--700); padding-left: 20px; position: relative; }
+ .panelcard li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent--primary-1); }
+
+ /* ===== Finale ===== */
+ .finale { background: var(--neutral--800); color: var(--neutral--100); padding: clamp(90px, 12vw, 150px) 24px; position: relative; overflow: hidden; }
+ .finale::before { content: ""; position: absolute; inset: 0; background: radial-gradient(900px 600px at 15% 110%, #4a358566 0%, transparent 60%); pointer-events: none; }
+ .finale .wrap { position: relative; text-align: center; }
+ .finale .kicker { color: var(--accent--primary-1); }
+ .finale h2 { font-size: clamp(28px, 4.4vw, 46px); font-weight: 600; line-height: 1.14; letter-spacing: -.01em; margin: 0 0 18px; color: var(--neutral--100); text-wrap: balance; }
+ .finale .lead { color: #d9d3ee; max-width: 640px; margin: 0 auto 36px; }
+ .finale .budget { max-width: 760px; margin: 0 auto 40px; }
+ .finale .budget .budget-q { color: var(--neutral--100); font-size: clamp(18px, 2.2vw, 22px); font-weight: 600; line-height: 1.4; max-width: 600px; margin: 0 auto 26px; text-wrap: balance; }
+ .finale .budget .basis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 720px; margin: 0 auto; text-align: left; }
+ .finale .budget .basis-card { border: 1px solid #ffffff24; border-radius: 18px; padding: 24px 24px 26px; background: #ffffff08; }
+ .finale .budget .basis-card .per { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent--primary-1); }
+ .finale .budget .basis-card h4 { font-size: 17px; font-weight: 600; color: var(--neutral--100); margin: 8px 0 8px; }
+ .finale .budget .basis-card p { font-size: 13.5px; line-height: 1.55; color: #c6bee2; margin: 0; }
+ @media (max-width: 720px) { .finale .budget .basis { grid-template-columns: 1fr; } }
+ .finale .acts { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+ .finale .acts a { text-decoration: none; font-size: 15.5px; font-weight: 600; border-radius: 18px; padding: 14px 26px; transition: transform .3s, background-color .3s, border-color .3s; }
+ .finale .acts a.primary { background: var(--accent--primary-1); color: var(--neutral--800); }
+ .finale .acts a.primary:hover { transform: translateY(-2px); background: #b3a6ff; }
+ .finale .acts a.ghost { border: 1px solid #ffffff38; color: var(--neutral--100); }
+ .finale .acts a.ghost:hover { border-color: var(--accent--primary-1); background: #ffffff10; }
+
+ .sig { position: relative; overflow: hidden; padding: 26px 24px 90px; background: var(--neutral--800); color: #b4abd6; font-size: 13px; }
+ .sig::before { content: ""; position: absolute; inset: 0; background: radial-gradient(900px 600px at 15% 0%, #4a358566 0%, transparent 60%); pointer-events: none; }
+ .sig .wrap.wide { position: relative; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid #ffffff1f; padding-top: 22px; }
+
+ /* ===== Responsive ===== */
+ @media (max-width: 960px) {
+  .insights, .sounds { grid-template-columns: 1fr; }
+  .traj { grid-template-columns: 1fr; align-items: stretch; gap: 12px; }
+  .tcard { flex-direction: row; }
+  .tcard .ped { width: 8px; height: auto !important; margin: 10px 0; border-radius: 0 12px 12px 0; order: -1; }
+  .floor { grid-template-columns: 1fr; gap: 12px; }
+  .floor .slab { width: 100% !important; }
+  .pillars { grid-template-columns: 1fr 1fr; }
+  .twocol { grid-template-columns: 1fr; }
+ }
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"><i id="pbar"></i></div>
+
+<nav class="topnav">
+ <div class="topnav-inner">
+  <img src="assets/ciugu-logo.png" alt="CIUGU">
+  <div class="topnav-links">
+   <a href="#nom"><b>01</b>Le nom</a>
+   <a href="#positionnement"><b>02</b>Le positionnement</a>
+   <a href="#reseaux"><b>03</b>Les réseaux</a>
+  </div>
+ </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" data-screen-label="Acte II · Couverture">
+ <svg class="hero-rings" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <circle cx="1180" cy="120" r="340" stroke-width="1.5"></circle>
+  <circle cx="1180" cy="120" r="220" stroke-width="1"></circle>
+  <circle cx="140" cy="820" r="300" stroke-width="1.5"></circle>
+ </svg>
+ <div class="hero-inner">
+  <div class="wordmark" aria-label="CIUGU">
+   <span style="--i: 0;">C</span><span style="--i: 1;">I</span><span style="--i: 2;">U</span><span style="--i: 3;">G</span><span style="--i: 4;">U</span>
+  </div>
+  <p class="lead">L'audit répare le présent. Voici ce qui construit la suite&nbsp;: <strong style="color: #ffffff;">un nom, une trajectoire, une voix</strong>. Les trois décisions qui transforment un cabinet en marque.</p>
+  <div class="hero-chips">
+   <a href="#nom"><b>01</b>Le nom</a>
+   <a href="#positionnement"><b>02</b>Le positionnement</a>
+   <a href="#reseaux"><b>03</b>Les réseaux sociaux</a>
+  </div>
+ </div>
+</header>
+
+<!-- ============ 01 LE NOM ============ -->
+<section class="ch" id="nom" data-screen-label="Acte II · 01 Le nom">
+ <div class="wrap wide">
+  <h2 class="ch-title reveal" style="--d: .08s;">Un nom rare, taillé pour grandir.</h2>
+  <p class="lead reveal" style="--d: .16s;">L'audit a montré le coût du désordre&nbsp;: trois écritures du nom qui se contredisent.<br>La stratégie commence donc par le nom. Voici le résultat de l'enquête : le mot, le son, le marché.</p>
+
+  <div class="anatomy reveal" id="anatomy" style="--d: .2s;">
+   <div class="word" id="anatomyWord" data-comment-anchor="strategie-anatomy">
+    <span data-g="cg">C</span><span data-g="i">I</span><span data-g="u">U</span><span data-g="cg">G</span><span data-g="u">U</span>
+   </div>
+   <div class="anote" id="anatomyNote">Cinq lettres, deux syllabes, qui finissent toutes les deux en U.</div>
+   <div class="adots" id="anatomyDots" role="tablist" aria-label="Lectures du mot CIUGU"></div>
+   <p class="fine">En roumain, sa famille sonore évoque <i>a ciuguli</i>, picorer : une sonorité familière et affectueuse dans sa langue d'origine.<br>Et le mot n'a aucun sens figé au dictionnaire&nbsp;: un nom propre, libre, que la marque peut remplir entièrement.</p>
+  </div>
+
+  <h3 class="sub-title reveal">Le son dit déjà la promesse</h3>
+  <p class="muted reveal" style="--d: .06s;">Le son d'un nom n'est pas neutre. CIUGU énonce, dans l'ordre, exactement la hiérarchie de votre marque : rassurer, embellir, opérer.</p>
+  <div class="sounds">
+   <div class="sound reveal"><div class="glyphbox"><div class="shape round"></div></div><h4>La douceur</h4><p>Les sonorités arrondies en U évoquent la rondeur et la douceur. Deux U&nbsp;: la douceur encadre le mot.</p></div>
+   <div class="sound reveal" style="--d: .12s;"><div class="glyphbox"><div class="shape thin" style="margin: 0;"></div></div><h4>La précision</h4><p>Le I, fin et tendu, évoque la finesse et l'exactitude : le geste clinique, au centre du mot comme au centre du métier.</p></div>
+   <div class="sound reveal" style="--d: .24s;"><div class="glyphbox"><div class="shape heavy"></div></div><h4>L'autorité</h4><p>Le G sonore donne du poids et de l'assise : la chirurgienne derrière la douceur. C'est lui qui empêche le nom d'être mièvre.</p></div>
+  </div>
+
+  <h3 class="sub-title reveal">Le marché lui donne raison</h3>
+  <div class="insights">
+   <div class="insight reveal"><span class="tag">La tendance</span><h4>Le « iu », son du luxe actuel</h4><p>La sonorité douce en «&nbsp;iu&nbsp;» est celle du luxe du moment&nbsp;: pensez à Miu Miu, la marque la plus désirée ces derniers mois. CIUGU arrive sur cette vague sans copier personne&nbsp;: même musique, autre histoire.</p></div>
+   <div class="insight reveal" style="--d: .1s;"><span class="tag">Aujourd'hui</span><h4>Une page Google libre</h4><p>Vos concurrents portent des noms qui décrivent un service&nbsp;: Whitening Artists, Alpine White, Smile Design. CIUGU ne décrit rien, il peut donc tout contenir&nbsp;: le cabinet, les soins, demain les produits. Le mot est quasi introuvable sur Google, et <strong>ciugu.com</strong>, 5 lettres, est déjà choisi.</p></div>
+   <div class="insight reveal" style="--d: .06s;"><span class="tag">Demain</span><h4>Un nom court = un actif</h4><p>Cinq lettres se retiennent et se réécrivent sans faute&nbsp;: de quoi nourrir le bouche-à-oreille. Et tout ce que vous bâtissez s'accumule sur ce seul mot, qui vaut donc plus avec le temps.</p></div>
+   <div class="insight reveal" style="--d: .16s;"><span class="tag">Le nom qu'on dit</span><h4>« Je vais chez CIUGU. »</h4><p>« Ma dentiste » ne se transmet pas et ne se met pas sur un produit. CIUGU, si&nbsp;: on va chez CIUGU aujourd'hui, on achète du CIUGU demain · le soin et le produit sous un seul mot.</p></div>
+  </div>
+ </div>
+</section>
+
+<div class="band" data-screen-label="Acte II · Verdict du nom">
+ <div class="wrap">
+  <div class="kicker reveal" style="color: rgb(255, 255, 255);">Mon verdict</div>
+  <p class="big reveal" style="--d: .08s;">CIUGU est un nom <em style="color: rgb(255, 255, 255);">rare</em>, <em style="color: #ffffff;">court</em>, au son juste pour ce que vous incarnez, porté par la sonorité du moment, libre sur Google, et capable de grandir du cabinet jusqu'aux produits.</p>
+  <p class="muted reveal" style="--d: .16s;">On le valide ensemble, on fixe sa prononciation, et on vérifie qu'il est juridiquement libre avant de le déposer.</p>
+ </div>
+</div>
+
+<!-- ============ 02 LE POSITIONNEMENT ============ -->
+<section class="ch tint" id="positionnement" data-screen-label="Acte II · 02 Le positionnement">
+ <div class="wrap wide">
+  <div class="kicker reveal">02 <span>· le positionnement</span></div>
+  <h2 class="ch-title reveal" style="--d: .08s;">Genève d'abord.<br>Chaque étape paie la suivante.</h2>
+  <p class="lead reveal" style="--d: .16s;">C'est le marché genevois qui crédibilise la marque et finance tout le reste.<br>La trajectoire monte marche par marche, jamais l'inverse.</p>
+
+  <div class="traj" id="traj">
+   <div class="tcard"><div class="box"><div class="no">ÉTAPE 1</div><h4>Genève</h4><p>La base&nbsp;: fiches, avis, visibilité locale. C'est l'audit, il est en route.</p></div><div class="ped" style="--h: 18px; --i: 0;"></div></div>
+   <div class="tcard"><div class="box"><div class="no">ÉTAPE 2</div><h4>Site neuf, puis publicité</h4><p>Le site conçu pour grandir, le suivi en place, la publicité ensuite.</p></div><div class="ped" style="--h: 44px; --i: 1;"></div></div>
+   <div class="tcard"><div class="box"><div class="no">ÉTAPE 3</div><h4>Le contenu</h4><p>Blog co-écrit avec elle + vidéos&nbsp;: la notoriété se construit.</p></div><div class="ped" style="--h: 70px; --i: 2;"></div></div>
+   <div class="tcard"><div class="box"><div class="no">ÉTAPE 4</div><h4>Le rayonnement</h4><p>Communauté internationale, séminaires, conférences.</p></div><div class="ped" style="--h: 96px; --i: 3;"></div></div>
+   <div class="tcard"><div class="box"><div class="no">ÉTAPE 5</div><h4>L'horizon</h4><p>Une gamme de produits, sur un créneau romand vérifié vide.</p></div><div class="ped" style="--h: 122px; --i: 4;"></div></div>
+  </div>
+
+  <h3 class="sub-title reveal">Les quatre appuis de la trajectoire</h3>
+  <div class="insights">
+   <div class="insight reveal"><span class="tag">L'incarnation</span><h4>Le médecin qui se montre</h4><p>Un scénariste écrit et tourne à ses côtés&nbsp;; un studio l'installe avec une image soignée, à la hauteur des créateurs établis. Sa position de médecin est l'atout central ; le marketing, c'est son implication, et nous l'accompagnons à chaque étape.</p><p>Le chemin est balisé&nbsp;: Major Mouvement (kiné, 1,2 M d'abonnés) et Dr Jimmy Mohamed (~2 M, France 2, RTL). Praticien, puis média, puis scène.</p></div>
+   <div class="insight reveal" style="--d: .1s;"><span class="tag">Le contenu</span><h4>Le blog et la communauté</h4><p>Des articles rédigés avec elle, publiés sur son site&nbsp;: de quoi remonter sur Google, nourrir ce que les IA répondront à votre sujet, et ouvrir une communauté qui dépasse Genève. Son trilinguisme est un vrai atout&nbsp;: elle consulte déjà en français, anglais et roumain.</p></div>
+   <div class="insight reveal" style="--d: .06s;"><span class="tag">Le marché</span><h4>La piste produits</h4><p>Alpine White, qui tient les rayons romands, n'a pas été fondée par des dentistes. Le modèle dentiste-fondatrice existe ailleurs (vVARDIS à Zurich, Spotlight en Irlande) : donc prouvé, et valorisé. Mais à Genève, Lausanne et en France voisine, <strong>à notre connaissance, aucune praticienne en exercice n'a bâti de marque incarnée&nbsp;: le créneau romand est libre.</strong></p><p class="fine">Distribution&nbsp;: Galaxus en local, amazon.de/.fr pour l'international</p></div>
+   <div class="insight reveal" style="--d: .16s;"><span class="tag">Le parcours patient</span><h4>La réservation, sans friction</h4><p>Échange direct avec OneDoc le 11 juin&nbsp;: <br>un widget s'intègre au site sans intégration lourde, et une solution expérimentale est en développement, nous la testerons. <br>Plus simple pour le patient, plus léger pour le médecin&nbsp;: l'autonomie de la marque passe aussi par là.</p><p class="fine">source&nbsp;: échange avec une responsable OneDoc, 11.06.2026</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- ============ TAGLINE ============ -->
+<section class="tagline" id="taglineSec" data-screen-label="Acte II · La promesse">
+ <div class="kicker" style="color: rgb(255, 255, 255);">La promesse</div>
+ <p class="phrase" data-comment-anchor="strategie-tagline"><span class="w" style="--i: 0;">«&nbsp;Le</span> <span class="w" style="--i: 1;">sourire</span> <span class="w" style="--i: 2;">qu'on</span> <span class="w" style="--i: 3;">ne</span> <span class="w" style="--i: 4;">soupçonne</span> <span class="w" style="--i: 5;">pas.&nbsp;»</span></p>
+ <p class="en">The smile no one suspects.</p>
+ <p class="proof">La preuve qui la rend crédible&nbsp;: une chirurgienne qui choisit la douceur. Genève le prouve aujourd'hui, le contenu le fait rayonner, les produits l'étendront demain.</p>
+</section>
+
+<!-- ============ 03 LES RÉSEAUX ============ -->
+<section class="ch" id="reseaux" data-screen-label="Acte II · 03 Les réseaux sociaux">
+ <div class="wrap wide">
+  <div class="kicker reveal">03 <span>· les réseaux sociaux</span></div>
+  <h2 class="ch-title reveal" style="--d: .08s;">12&nbsp;800 personnes vous suivent déjà. On en fait une file d'attente.</h2>
+  <p class="lead reveal" style="--d: .16s;">Ce qui vous manque n'est pas une audience&nbsp;: c'est un système qui la transforme en patientes. <br>Le voici, en trois étages : chacun a sa mission, aucun ne fait le travail d'un autre.</p>
+
+  <div class="funnel" id="funnel">
+   <div class="floor">
+    <div class="viz"><div class="slab" style="--w: 100%; --i: 0;"><b>1</b>Découvrir</div></div>
+    <div class="txt"><h4>La vidéo courte TikTok + Reels</h4><p>Le format n°1 en retour sur investissement aujourd'hui, et celui où les marketeurs investissent le plus. Sa mission&nbsp;: arrêter le pouce, faire connaître votre visage, toucher celles qui ne vous cherchent pas encore.</p><p class="fine">source : HubSpot, 2025</p></div>
+   </div>
+   <div class="floor">
+    <div class="viz"><div class="slab" style="--w: 72%; --i: 1;"><b>2</b>Convaincre</div></div>
+    <div class="txt"><h4>Instagram, votre maison</h4><p>Le réseau qui décide&nbsp;: parmi les patientes qui regardent les réseaux d'un cabinet, une large majorité (~85&nbsp;%) dit que ça pèse sur leur choix. Avant/après sobres, témoignages, coulisses&nbsp;: la confiance se construit ici, et se convertit en rendez-vous.</p><p class="fine">source : Dove Medical Press (PPA), 2024</p></div>
+   </div>
+   <div class="floor">
+    <div class="viz"><div class="slab" style="--w: 46%; --i: 2;"><b>3</b>Prescrire</div></div>
+    <div class="txt"><h4>LinkedIn, l'autorité</h4><p>Pas pour les patientes&nbsp;: pour les confrères qui vous adressent des patientes. Une recommandation entre médecins vaut bien plus qu'une audience froide, et c'est ici que naissent les invitations aux séminaires et les liens avec les entreprises et ONG de Genève.</p></div>
+   </div>
+  </div>
+
+  <h3 class="sub-title reveal">Quatre piliers, un filtre pour tout.</h3>
+  <div class="pillars">
+   <div class="pillar reveal"><h4>Rassurer</h4><p>Le contenu qui désarme la peur, sans jamais la nommer.</p></div>
+   <div class="pillar reveal" style="--d: .08s;"><h4>Éduquer</h4><p>Les vraies questions des patientes : une réponse nette par vidéo.</p></div>
+   <div class="pillar reveal" style="--d: .16s;"><h4>Montrer</h4><p>Avant/après consentis, le geste, les coulisses.</p></div>
+   <div class="pillar reveal" style="--d: .24s;"><h4>Incarner</h4><p>Son regard d'experte, sa voix, son histoire.</p></div>
+  </div>
+  <p class="muted pillar-note reveal">Chaque contenu appartient à un pilier. S'il n'en sert aucun, il ne sort pas.</p>
+
+  <h3 class="sub-title reveal">La machine de production</h3>
+  <div class="twocol">
+   <div class="panelcard reveal"><h4>Des journées de tournage, découpées en semaines de publication</h4><p>Des tournages planifiés selon les besoins une ou plusieurs journées par mois, la production s'adapte entièrement à CIUGU. Chaque journée est découpée en blocs de scènes, filmée en deux formats (vertical et horizontal)&nbsp;: de quoi alimenter des semaines.</p><p>La réutilisation multiplie la portée jusqu'à <strong>×3</strong> et économise <strong>60 à 80&nbsp;%</strong> du temps de production. Or seuls 35&nbsp;% des marketeurs le font sérieusement&nbsp;: un avantage concurrentiel direct. Le cadreur livre du prêt-à-publier&nbsp;; l'outil programme les publications, cadre les à‑faire et les à‑ne‑pas‑faire, et affiche les statistiques en temps réel.</p></div>
+   <div class="panelcard reveal" style="--d: .1s;"><h4>Les garde-fous</h4><ul>
+    <li>Consentement écrit pour tout avant/après.</li>
+    <li>Jamais de promesse de résultat.</li>
+    <li>Règles genevoises de publicité santé respectées.</li>
+   </ul><h4 style="margin-top: 22px;">Ce qu'on mesure chaque mois</h4><ul>
+    <li>Portée et nouveaux abonnés qualifiés.</li>
+    <li>Messages reçus, rendez-vous attribués.</li>
+    <li>Invitations professionnelles.</li>
+   </ul></div>
+  </div>
+ </div>
+</section>
+
+<!-- ============ FINALE ============ -->
+<section class="finale" data-screen-label="Acte II · Finale">
+ <div class="wrap">
+  <h2 class="reveal" style="--d: .08s;">Prochaine étape&nbsp;:<br>Définir l'objectif et le budget.<br>Le reste, on le construit autour.</h2>
+
+ </div>
+</section>
+
+<footer class="sig">
+ <div class="wrap wide">
+  <span>megga stratégie de marque préparé pour la Dre Ciugu Isabela</span>
+  <span> juin 2026</span>
+ </div>
+</footer>
+
+<script>
+(function () {
+ var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if (!reduced) { document.documentElement.classList.add('js'); }
+
+ /* Scroll progress */
+ var pbar = document.getElementById('pbar');
+ function onScroll() {
+  var h = document.documentElement;
+  var max = h.scrollHeight - h.clientHeight;
+  pbar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+ }
+ window.addEventListener('scroll', onScroll, { passive: true });
+ onScroll();
+
+ /* Reveal on scroll, IO when it works, rect-based fallback always active */
+ var pending = Array.prototype.slice.call(document.querySelectorAll('.wordmark, .reveal, .traj, .funnel, .tagline'));
+ function revealEl(el) {
+  if (el.classList.contains('in')) { return; }
+  el.classList.add('in');
+  var i = pending.indexOf(el);
+  if (i > -1) { pending.splice(i, 1); }
+  if (io) { io.unobserve(el); }
+ }
+ function checkRects() {
+  if (!pending.length) { return; }
+  var vh = window.innerHeight || document.documentElement.clientHeight;
+  pending.slice().forEach(function (el) {
+   var r = el.getBoundingClientRect();
+   if (r.top < vh * 0.92 && r.bottom > 0) { revealEl(el); }
+  });
+  if (!pending.length) {
+   window.removeEventListener('scroll', checkRects);
+   window.removeEventListener('resize', checkRects);
+  }
+ }
+ var io = null;
+ if ('IntersectionObserver' in window) {
+  try {
+   io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { revealEl(e.target); } });
+   }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+   pending.forEach(function (el) { io.observe(el); });
+  } catch (err) { io = null; }
+ }
+ window.addEventListener('scroll', checkRects, { passive: true });
+ window.addEventListener('resize', checkRects);
+ window.addEventListener('load', checkRects);
+ setTimeout(checkRects, 250);
+ setTimeout(checkRects, 900);
+
+ /* Hard safety: never leave the wordmark hidden if a timeline never advances */
+ setTimeout(function () {
+  document.querySelectorAll('.wordmark span').forEach(function (s) {
+   if (getComputedStyle(s).opacity === '0') {
+    s.style.transition = 'none';
+    s.style.opacity = '1';
+    s.style.transform = 'none';
+    s.style.filter = 'none';
+   }
+  });
+ }, 1700);
+
+ /* Letter anatomy cycle */
+ var modes = [
+  { g: null, ring: false, text: 'Cinq lettres, deux syllabes, qui finissent toutes les deux en <strong>U</strong>.' },
+  { g: 'cg', ring: true, text: 'Le <strong>C</strong> et le <strong>G</strong> partagent le même squelette circulaire, un motif typographique rare, taillé pour un logotype.' },
+  { g: 'u',  ring: false, text: 'Les deux <strong>U</strong> sont jumeaux&nbsp;: la douceur ouvre et ferme le mot.' },
+  { g: 'i',  ring: false, text: 'Le <strong>I</strong>, fin et précis, au centre comme le geste au centre du métier.' }
+ ];
+ var anatomy = document.getElementById('anatomy');
+ var word = document.getElementById('anatomyWord');
+ var note = document.getElementById('anatomyNote');
+ var dotsBox = document.getElementById('anatomyDots');
+ var letters = Array.prototype.slice.call(word.querySelectorAll('span'));
+ var idx = 0, timer = null;
+
+ modes.forEach(function (m, i) {
+  var b = document.createElement('button');
+  b.type = 'button';
+  b.setAttribute('aria-label', 'Lecture ' + (i + 1));
+  b.addEventListener('click', function () { go(i); restart(); });
+  dotsBox.appendChild(b);
+ });
+ var dots = Array.prototype.slice.call(dotsBox.children);
+
+ function apply(m) {
+  anatomy.classList.toggle('dim', !!m.g);
+  letters.forEach(function (s) {
+   var on = m.g && s.getAttribute('data-g') === m.g;
+   s.classList.toggle('on', !!on);
+   s.classList.toggle('ring', !!on && m.ring);
+  });
+  note.innerHTML = m.text;
+ }
+ function go(i) {
+  idx = i % modes.length;
+  dots.forEach(function (d, j) { d.classList.toggle('on', j === idx); });
+  if (reduced) { apply(modes[idx]); return; }
+  note.classList.add('fade');
+  setTimeout(function () { apply(modes[idx]); note.classList.remove('fade'); }, 220);
+ }
+ function tick() { go(idx + 1); }
+ function restart() { if (timer) { clearInterval(timer); } if (!reduced) { timer = setInterval(tick, 3400); } }
+ go(0);
+ restart();
+ anatomy.addEventListener('mouseenter', function () { if (timer) { clearInterval(timer); timer = null; } });
+ anatomy.addEventListener('mouseleave', restart);
+})();
+</script>
+
+</body>
+</html>
